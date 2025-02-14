@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 
 function Orders() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const { user } = useAuth();
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -22,15 +23,6 @@ function Orders() {
     fetchOrders();
   }, []);
 
-  const handleDelete = async (orderId) => {
-    try {
-      await axios.delete(`http://localhost:5000/orders/${orderId}`);
-      setOrders(orders.filter((order) => order.id !== orderId));
-    } catch (error) {
-      console.error("Error deleting order:", error);
-    }
-  };
-
   if (loading)
     return <div className="text-center p-4 text-gray-800">Loading...</div>;
   if (error)
@@ -42,36 +34,32 @@ function Orders() {
       {orders.length === 0 ? (
         <p className="text-gray-600">No orders found.</p>
       ) : (
-        orders.map((order) => (
-          <div
-            key={order.id}
-            className="flex items-center justify-between border-b py-4"
-          >
-            <div className="text-left">
-              <h2 className="font-bold text-black">Order ID: {order.id}</h2>
-              <p className="text-gray-600">Total: ${order.total}</p>
-              {order.buyer && (
-                <p className="text-gray-600">Buyer: {order.buyer}</p>
-              )}
-              <p className="text-gray-600">
-                Date: {new Date(order.date).toLocaleString()}
-              </p>
-              <ul className="list-disc list-inside">
-                {order.items.map((item) => (
-                  <li key={item.id} className="text-gray-600">
-                    {item.name} - ${item.price} x {item.quantity}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <button
-              onClick={() => handleDelete(order.id)}
-              className="text-red-600 hover:text-red-700 mx-2"
+        orders
+          .filter((o) => o.buyer === user.email)
+          .map((order) => (
+            <div
+              key={order.id}
+              className="flex items-center justify-between border-b py-4"
             >
-              Delete
-            </button>
-          </div>
-        ))
+              <div className="text-left">
+                <h2 className="font-bold text-black">Order ID: {order.id}</h2>
+                <p className="text-gray-600">Total: ${order.total}</p>
+                {order.buyer && (
+                  <p className="text-gray-600">Buyer: {order.buyer}</p>
+                )}
+                <p className="text-gray-600">
+                  Date: {new Date(order.date).toLocaleString()}
+                </p>
+                <ul className="list-disc list-inside">
+                  {order.items.map((item) => (
+                    <li key={item.id} className="text-gray-600">
+                      {item.name} - ${item.price} x {item.quantity}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))
       )}
     </div>
   );

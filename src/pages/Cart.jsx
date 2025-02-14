@@ -7,6 +7,7 @@ function Cart() {
   const { cartItems, removeFromCart, addToCart, decrementCart } = useCart();
   const navigate = useNavigate();
   const { user } = useAuth();
+  
   const groupedItems = cartItems.reduce((acc, item) => {
     const existingItem = acc.find((i) => i.id === item.id);
     if (existingItem) {
@@ -73,7 +74,10 @@ function Cart() {
               </button>
               <span className="text-black mx-2">{item.quantity}</span>
               <button
-                onClick={() => decrementCart(item.id)}
+                onClick={() => {
+                  if (item.quantity <= 1) return;
+                  decrementCart(item.id);
+                }}
                 className="text-red-600 hover:text-red-700 mx-2"
               >
                 -
