@@ -1,0 +1,61 @@
+{
+  "laptops": [
+    {
+      "id": "2",
+      "name": "Dell XPS 13",
+      "price": 1299.99,
+      "image": "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80",
+      "description": "Premium ultrabook with InfinityEdge display"
+    },
+    {
+      "id": "3",
+      "name": "Lenovo ThinkPad X1",
+      "price": 1499.99,
+      "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+      "description": "laptop with premium build quality"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "email": "test@mail.com",
+      "password": "1234"
+    },
+    {
+      "id": "7dc2",
+      "email": "test@smail.com",
+      "password": "1234"
+    },
+    {
+      "id": "b433",
+      "email": "test@test.test",
+      "password": "12345678"
+    }
+  ],
+  "orders": [
+    {
+      "id": "8829",
+      "items": [
+        {
+          "id": "3",
+          "name": "Lenovo ThinkPad X1",
+          "price": 1499.99,
+          "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+          "description": "laptop with premium build quality",
+          "quantity": 2
+        },
+        {
+          "id": "2",
+          "name": "Dell XPS 13",
+          "price": 1299.99,
+          "image": "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80",
+          "description": "Premium ultrabook with InfinityEdge display",
+          "quantity": 2
+        }
+      ],
+      "total": "5599.96",
+      "date": "2025-02-14T09:19:01.305Z",
+      "buyer": "test@test.test"
+    }
+  ]
+}
